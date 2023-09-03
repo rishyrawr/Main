@@ -19,7 +19,9 @@ if game.GameId == 578392296 then
     repeat task.wait() until timerCheck() > 60
         task.wait(1)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua", true))()
+        delfile("NotSameServers.json")
     else
         loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua", true))()
+        delfile("NotSameServers.json")
     end
 end
