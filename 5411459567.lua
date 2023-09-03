@@ -85,7 +85,7 @@ if game.GameId == 578392296 then
         repeat
             task.wait()
         until timerCheck() > 60
-        task.wait(1)
+        task.wait(3)
         Teleport()
     else
         Teleport()
