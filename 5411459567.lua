@@ -1,77 +1,20 @@
-local PlaceID = game.PlaceId
-local AllIDs = {}
-local foundAnything = ""
-local actualHour = math.floor(os.date("!*t").min/10)
-local Deleted = false
+repeat task.wait() until game:IsLoaded()
 
-local File = pcall(function()
-    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
-end)
-
-if not File then
-    table.insert(AllIDs, actualHour)
-    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+if game.PlaceId == 5411459567 then
+    repeat task.wait(1) until game:GetService("Workspace").Message
 end
 
-function TPReturner()
-    local Site;
-    if foundAnything == "" then
-        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+local function AutoLoad()
+    if syn then
+        syn.queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/5411459567.lua", true))()')
     else
-        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
-    end
-    local ID = ""
-    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
-        foundAnything = Site.nextPageCursor
-    end
-    local num = 0;
-    for i,v in pairs(Site.data) do
-        local Possible = true
-        ID = tostring(v.id)
-        if tonumber(v.maxPlayers) > tonumber(v.playing) then
-            for _,Existing in pairs(AllIDs) do
-                if num ~= 0 then
-                    if ID == tostring(Existing) then
-                        Possible = false
-                    end
-                else
-                    if tonumber(actualHour) ~= tonumber(Existing) then
-                        local delFile = pcall(function()
-                            delfile("NotSameServers.json")
-                            AllIDs = {}
-                            table.insert(AllIDs, actualHour)
-                        end)
-                    end
-                end
-                num = num + 1
-            end
-            if Possible == true then
-                table.insert(AllIDs, ID)
-                wait()
-                pcall(function()
-                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-                    wait()
-                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
-                end)
-                wait(5)
-            end
-        end
-    end
-end
-
-function Teleport()
-    while wait() do
-        pcall(function()
-            TPReturner()
-            if foundAnything ~= "" then
-                TPReturner()
-            end
-        end)
+        queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/5411459567.lua", true))()')
     end
 end
 
 if game.GameId == 578392296 then
     if game.PlaceId ~= 5411459567 then
+        AutoLoad()
         game:GetService('TeleportService'):Teleport(5411459567)
     end
 
@@ -82,12 +25,12 @@ if game.GameId == 578392296 then
     end
 
     if timerCheck() <= 60 then
-        repeat
-            task.wait()
-        until timerCheck() > 60
-        task.wait(3)
-        Teleport()
+    repeat task.wait() until timerCheck() > 60
+        task.wait(5)
+        AutoLoad()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua"))()
     else
-        Teleport()
+        AutoLoad()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua"))()
     end
 end
