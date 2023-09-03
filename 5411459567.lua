@@ -53,7 +53,7 @@ function TPReturner()
                     wait()
                     game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
                 end)
-                wait(1)
+                wait(5)
             end
         end
     end
@@ -85,7 +85,7 @@ if game.GameId == 578392296 then
         repeat
             task.wait()
         until timerCheck() > _G.Time
-        task.wait(.5)
+        task.wait(1)
         Teleport()
     else
         Teleport()
