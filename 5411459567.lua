@@ -1,4 +1,3 @@
-repeat task.wait() until game:IsLoaded() == true
 local PlaceID = game.PlaceId
 local AllIDs = {}
 local foundAnything = ""
