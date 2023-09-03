@@ -28,9 +28,9 @@ if game.GameId == 578392296 then
     repeat task.wait() until timerCheck() > 60
         task.wait(5)
         AutoLoad()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua", true))()
     else
         AutoLoad()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/rishyrawr/Main/PlaceId/Laiteux.lua", true))()
     end
 end
