@@ -81,10 +81,10 @@ if game.GameId == 578392296 then
         return time
     end
 
-    if timerCheck() <= _G.Time then
+    if timerCheck() <= 60 then
         repeat
             task.wait()
-        until timerCheck() > _G.Time
+        until timerCheck() > 60
         task.wait(1)
         Teleport()
     else
