@@ -1,3 +1,7 @@
+-----------------------------------------------------------------------------
+----- IF YOU TRYNA STEALING, PLEASE CREDIT TO RISHYDEKNMRTUP ON DISCORD -----
+-----------------------------------------------------------------------------
+
 repeat task.wait() until game:IsLoaded() == true
 local PlaceID = game.PlaceId
 local AllIDs = {}
