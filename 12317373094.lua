@@ -1,7 +1,7 @@
 local Units = {}
 while true do task.wait()
   for i,v in pairs(game:GetService("Workspace")["Towers"]:GetChildren()) do
-        table.insert(v.Name)
+        table.insert(Units, v.Name)
     end
 end
 
