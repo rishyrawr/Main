@@ -1,5 +1,5 @@
 local Units = {}
-for i,v in pairs(game:GetService("Workspace").Towers:GetChildren()) do
+for i,v in pairs(game:GetService("Workspace")["Towers"]:GetChildren()) do
   if v:IsA("Folder") then
     table.insert(Units, v.Name)
   end
@@ -21,5 +21,4 @@ while true do task.wait(.1)
   }
   game:GetService("ReplicatedStorage").RemoteService.Handler:FireServer(unpack(args))
 end
-
-###### RISHY ######
+-- Rishy
