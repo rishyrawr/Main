@@ -1,8 +1,6 @@
-local Units = {}
-while true do task.wait()
-  for i,v in pairs(game:GetService("Workspace")["Towers"]:GetChildren()) do
-        table.insert(Units, v.Name)
-    end
+for i,v in pairs(game:GetService("Workspace")["Towers"]:GetChildren()) do
+  local Units = {}
+  table.insert(Units, v.Name)
 end
 
 while true do task.wait(.1)
