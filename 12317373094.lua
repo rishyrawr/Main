@@ -1,9 +1,11 @@
-Units = {}
-for i,v in pairs(game:GetService("Workspace")["Towers"]:GetChildren()) do
-  table.insert(Units, v.Name)
-end
-
 while true do task.wait(.1)
+  Units = {}
+  for i,v in pairs(game:GetService("Workspace")["Towers"]:GetChildren()) do
+      if v:IsA("Folder") then
+         table.insert(Units, v.Name)
+    end
+  end
+  
   local args = {
     [1] = {
       ["\8"] = {
@@ -19,4 +21,3 @@ while true do task.wait(.1)
   }
   game:GetService("ReplicatedStorage").RemoteService.Handler:FireServer(unpack(args))
 end
--- Rishy
