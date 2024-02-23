@@ -12,7 +12,7 @@ while true do task.wait(.1)
         [1] = {
           [1] = {
             ["Radius"] = 999,
-            ["TowerId"] = "188ef30f-0433-412e-9ffd-babf2ab7d502",
+            ["TowerId"] = Units,
             ["Position"] = Vector3.new(282.7716369628906, 106.8949966430664, 579.5369873046875)
           }
         }
@@ -21,3 +21,5 @@ while true do task.wait(.1)
   }
   game:GetService("ReplicatedStorage").RemoteService.Handler:FireServer(unpack(args))
 end
+
+###### RISHY ######
