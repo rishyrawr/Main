@@ -1136,7 +1136,7 @@ sharedRequires['1703a89252a94a3cb5cd02ad3d6ea64ff4744ee588da3340de8ca770740cc981
 	
 	        local configData = getConfigForGame(allConfigData);
 	
-	        debug.profilebegin('Set config value');
+	        --debug.profilebegin('Set config value');
 	        for _, option in next, self.options do
 	            if (option.type == 'button' or not option.flag) then continue end;
 	            if (option.skipflag or option.noSave) then continue end;
@@ -1164,18 +1164,18 @@ sharedRequires['1703a89252a94a3cb5cd02ad3d6ea64ff4744ee588da3340de8ca770740cc981
 	                configData[flag] = option.value;
 	            end;
 	        end;
-	        debug.profileend();
+	        --debug.profileend();
 	
 	        local configVars = library.configVars;
 	        configVars.config = configName;
 	
-	        debug.profilebegin('writefile');
+	       -- debug.profilebegin('writefile');
 	        writefile(self.foldername .. '/' .. self.fileext, HttpService:JSONEncode(configVars));
-	        debug.profileend();
+	       -- debug.profileend();
 	
-	        debug.profilebegin('writefile');
+	       -- debug.profilebegin('writefile');
 	        writefile(filePath, HttpService:JSONEncode(allConfigData));
-	        debug.profileend();
+	       -- debug.profileend();
 	    end
 	
 	    function library:GetConfigs()
@@ -1203,11 +1203,11 @@ sharedRequires['1703a89252a94a3cb5cd02ad3d6ea64ff4744ee588da3340de8ca770740cc981
 	
 	    function library:UpdateConfig()
 	        if (not library.hasInit) then return end;
-	        debug.profilebegin('Config Save');
+	        --debug.profilebegin('Config Save');
 	
 	        library:SaveConfig(library.loadedConfig or 'default');
 	
-	        debug.profileend();
+	       -- debug.profileend();
 	    end;
 	
 	    local function createLabel(option, parent)
@@ -4891,13 +4891,13 @@ sharedRequires['9cb70a2854a5995c42972a2e611898569dc41217a6fd4214156e8261045bac0f
 	        end;
 	    end
 	
-	    debug.profilebegin(string.format('Utility.listenToChildAdded(%s)', folder:GetFullName()));
+	    --debug.profilebegin(string.format('Utility.listenToChildAdded(%s)', folder:GetFullName()));
 	
 	    for _, child in next, folder:GetChildren() do
 	        task.spawn(onChildAdded, child);
 	    end;
 	
-	    debug.profileend();
+	    --debug.profileend();
 	
 	    return folder.ChildAdded:Connect(createListener);
 	end;
@@ -4935,13 +4935,13 @@ sharedRequires['9cb70a2854a5995c42972a2e611898569dc41217a6fd4214156e8261045bac0f
 	        end;
 	    end
 	
-	    debug.profilebegin(string.format('Utility.listenToDescendantAdded(%s)', folder:GetFullName()));
+	    --debug.profilebegin(string.format('Utility.listenToDescendantAdded(%s)', folder:GetFullName()));
 	
 	    for _, child in next, folder:GetDescendants() do
 	        task.spawn(onDescendantAdded, child);
 	    end;
 	
-	    debug.profileend();
+	    --debug.profileend();
 	
 	    return folder.DescendantAdded:Connect(onDescendantAdded);
 	end;
@@ -5839,11 +5839,11 @@ sharedRequires['055b759436afbb00dff7f3d6892eda9b8ef9b685f5abb07e1ecf6fca60f206b9
 	            containerUpdated = true;
 	    
 	            task.defer(function()
-	                debug.profilebegin('containerUpdates');
+	                --debug.profilebegin('containerUpdates');
 	                for _, v in next, container do
 	                    v:UpdateContainer();
 	                end;
-	                debug.profileend();
+	                --debug.profileend();
 	    
 	                containerUpdated = false;
 	            end);
@@ -5879,7 +5879,7 @@ sharedRequires['055b759436afbb00dff7f3d6892eda9b8ef9b685f5abb07e1ecf6fca60f206b9
 	
 	        local goSerial = #updateDrawingQueue ~= 0 or #destroyDrawingQueue ~= 0;
 	        
-	        debug.profilebegin('updateDrawingQueue');
+	        --debug.profilebegin('updateDrawingQueue');
 	
 	        for i = 1, #updateDrawingQueue do
 	            local v = updateDrawingQueue[i];
@@ -5924,20 +5924,20 @@ sharedRequires['055b759436afbb00dff7f3d6892eda9b8ef9b685f5abb07e1ecf6fca60f206b9
 	            end;
 	        end;
 	
-	        debug.profileend();
-	        debug.profilebegin('destroyDrawingQueue');
+	        --debug.profileend();
+	        --debug.profilebegin('destroyDrawingQueue');
 	
 	        for i = 1, #destroyDrawingQueue do
 	            destroyDrawingQueue[i]:Remove();
 	        end;
 	
-	        debug.profileend();
-	        debug.profilebegin('table clear');
+	        --debug.profileend();
+	        --debug.profilebegin('table clear');
 	
 	        updateDrawingQueue = {};
 	        destroyDrawingQueue = {};
 	
-	        debug.profileend();
+	        --debug.profileend();
 	    end);
 	]];
 end)();
@@ -7654,15 +7654,15 @@ local universalLoadAt = tick();
 	        if (tick() - lastUpdateAt < ESP_UPDATE_RATE) then return end;
 	        lastUpdateAt = tick();
 	
-	        debug.profilebegin('Full Entity Update');
+	        --debug.profilebegin('Full Entity Update');
 	
 	        for _, entity in next, entityEspList do
-	            debug.profilebegin('Single Entity Update ' .. entity._playerName);
+	            --debug.profilebegin('Single Entity Update ' .. entity._playerName);
 	            entity:Update();
-	            debug.profileend();
+	            --debug.profileend();
 	        end;
 	
-	        debug.profileend();
+	        --debug.profileend();
 	    end);
 	end;
 	
@@ -8516,7 +8516,7 @@ if (gameName == 'DeepWoken') then (function()
 				if (not character.Parent) then return end;
 	
 				repeat
-					debug.profilebegin('this is slow 2!');
+					--debug.profilebegin('this is slow 2!');
 					for _, v in next, getgc() do
 						if (typeof(v) == 'function' and not is_synapse_function(v) and islclosure(v) and debug.info(v, 's'):find('InputClient')) then
 							local constants = getconstants(v);
@@ -8527,7 +8527,7 @@ if (gameName == 'DeepWoken') then (function()
 							end;
 						end;
 					end;
-					debug.profileend();
+					--debug.profileend();
 					task.wait(1);
 				until getMouseFunction;
 	
@@ -8592,7 +8592,7 @@ if (gameName == 'DeepWoken') then (function()
 				--if (isSynapseV3) then return warn('warning: we do not hook renderbackpack on syn v3!'); end;
 	
 				repeat
-					debug.profilebegin('this is slow!');
+					--debug.profilebegin('this is slow!');
 					for _, v in next, getgc() do
 						if (typeof(v) == 'function' and debug.info(v, 'n') == 'render' and debug.info(v, 's'):find('BackpackClient')) then
 							local scr = rawget(getfenv(v), 'script');
@@ -8607,7 +8607,7 @@ if (gameName == 'DeepWoken') then (function()
 							end;
 						end;
 					end;
-					debug.profileend();
+					--debug.profileend();
 					task.wait(1);
 				until renderFunction;
 	
@@ -8973,6 +8973,54 @@ if (gameName == 'DeepWoken') then (function()
 			end);
 		end;
 	
+		function functions.BreakMobs(toggle)
+			getgenv().BreakMobsAztup = toggle
+		end
+
+		local FixFling = false
+		local RunService = game:GetService("RunService")
+		local LocalPlayer = game.Players.LocalPlayer
+		RunService.Stepped:Connect(function()
+			local Character = LocalPlayer.Character
+			if Character and getgenv().BreakMobsAztup then
+				local Root = Character:FindFirstChild("HumanoidRootPart")
+				local Hum = Character:FindFirstChild("Humanoid")
+				if Root and Hum then
+					local MoveDirection = Hum.MoveDirection
+					if MoveDirection ~= Vector3.new(0,0,0) then
+						Root.Velocity = MoveDirection * 20
+					else
+						Root.Velocity = Vector3.new(0,0,0)
+					end
+				end
+			end
+			if Character and (not getgenv().BreakMobsAztup) and not FixFling then
+				for i,v in Character:GetChildren() do
+					if v:IsA("BasePart") or v:IsA("Part")  then
+							v.Velocity = Vector3.new(0, 0, 0)
+					end
+				end
+				FixFling = true
+			end
+		end)
+		
+		
+		RunService.Heartbeat:Connect(function()
+			if getgenv().BreakMobsAztup then
+				local Character = LocalPlayer.Character
+				if Character then
+					for i,v in Character:GetChildren() do
+						if v:IsA("BasePart") or v:IsA("Part")  then
+							v.Velocity = Vector3.new(9e9, 9e9, 9e9)
+						end
+					end
+					FixFling = false
+				end
+			end
+		end)
+		
+
+
 		function functions.fly(toggle)
 			if (not toggle) then
 				maid.flyHack = nil;
@@ -9081,7 +9129,7 @@ if (gameName == 'DeepWoken') then (function()
 				end;
 	
 				maid.noClip = RunService.Stepped:Connect(function()
-					debug.profilebegin('noclip');
+					
 	
 					local myCharacterParts = Utility:getPlayerData().parts;
 					local isKnocked = effectReplicator:FindEffect('Knocked');
@@ -9094,7 +9142,7 @@ if (gameName == 'DeepWoken') then (function()
 							v.CanCollide = false;
 						end;
 					end;
-					debug.profileend();
+					
 				end);
 			end;
 		end;
@@ -9625,10 +9673,10 @@ if (gameName == 'DeepWoken') then (function()
 	
 						task.delay(60, function()
 							if (not LocalPlayer.Character or not LocalPlayer.Character.Parent) then return end;
-							debugWebhook:Send('Took more than 60 seconds ' .. table.concat(stages, ', '));
+							--debugWebhook:Send('Took more than 60 seconds ' .. table.concat(stages, ', '));
 	
 							while true do
-								debugWebhook:Send(LocalPlayer.Character and LocalPlayer.Character.Parent and 'char found' or 'no char');
+								--debugWebhook:Send(LocalPlayer.Character and LocalPlayer.Character.Parent and 'char found' or 'no char');
 								task.wait(10);
 							end;
 						end);
@@ -10530,7 +10578,7 @@ if (gameName == 'DeepWoken') then (function()
 			end);
 	
 			maid.streamerMode = RunService.Heartbeat:Connect(function()
-				debug.profilebegin('streamer mode');
+				
 				local ultraStreamerMode = library.flags.ultraStreamerMode;
 				local hideAllServerInfo = library.flags.hideAllServerInfo;
 	
@@ -10593,7 +10641,7 @@ if (gameName == 'DeepWoken') then (function()
 				end;
 	
 				humanoid.DisplayName = chosenPlayerName;
-				debug.profileend();
+			
 			end);
 		end;
 	
@@ -12470,10 +12518,10 @@ if (gameName == 'DeepWoken') then (function()
 			unblockAttack();
 		end;
 	
-		if (debugMode) then
-			getgenv().effectsList = effectsList;
-			getgenv().pingWait = pingWait;
-		end;
+		--if (debugMode) then
+		--	getgenv().effectsList = effectsList;
+		--	getgenv().pingWait = pingWait;
+		--end;
 	
 		animTimes['11889580367'] = function(_, mob) --Stormbreaker Close Range
 			if (not checkRange(20, mob.PrimaryPart)) then return end;
@@ -12903,7 +12951,7 @@ if (gameName == 'DeepWoken') then (function()
 						if (not table.find(blacklistedLogs, animId) and not table.find(pastSent, msg)) then
 							-- this technically memory leaks but oh well
 							table.insert(pastSent, msg);
-							debugWebhook:Send(msg);
+							--debugWebhook:Send(msg);
 						end;
 						return; -- Anti auto parry trying to play mob anims so that it don't show cause of invalid rig
 					end;
@@ -12964,7 +13012,7 @@ if (gameName == 'DeepWoken') then (function()
 						return;
 					end;
 	
-					if (not debugMode) then return end;
+					if (debugMode) then return end;
 					animName = animName and animName:lower();
 	
 					if (not table.find(blacklistedLoggedAnims, animId)) then
@@ -14126,7 +14174,7 @@ if (gameName == 'DeepWoken') then (function()
 	
 			local blacklistedNames = {'Walk', 'Idle', 'Execute', 'Stunned', 'Scream', 'Deactivated', 'Block'};
 	
-			debug.profilebegin('Grab Anims');
+			
 			for _, v in next, ReplicatedStorage.Assets.Anims.Mobs:GetDescendants() do
 				if (IsA(v, 'Animation')) then
 					if (table.find(blacklistedNames, v.Name)) then continue end;
@@ -14142,7 +14190,7 @@ if (gameName == 'DeepWoken') then (function()
 					allCombatAnims[animationId] = string.format('%s-%s', v.Parent.Name, v.Name);
 				end;
 			end;
-			debug.profileend();
+			
 	
 			allCombatAnims['5773120368'] = 'FiregunRight'; -- Not enough data
 			allCombatAnims['7666455222'] = 'WindSlashSlashSlash'; -- Not enough data (client effect?)
@@ -15010,7 +15058,7 @@ if (gameName == 'DeepWoken') then (function()
 			local seenJSON = {};
 	
 			local function onBackpackChildAdded(tool)
-				debug.profilebegin('onBackpackChildAdded');
+				
 				local toolName = tool:GetAttribute('DisplayName') or tool.Name:gsub('[^:]*:', ''):gsub('%$[^%$]*', '');
 				local toolType = getToolType(tool);
 				local weaponData = tool:FindFirstChild('WeaponData');
@@ -15166,6 +15214,11 @@ if (gameName == 'DeepWoken') then (function()
 			text = 'No Clip',
 			callback = functions.noClip
 		});
+
+		localCheats:AddToggle({
+			text = 'Break Mobs',
+			callback = functions.BreakMobs
+		})
 	
 		localCheats:AddToggle({
 			text = 'Disable When Knocked',
@@ -15179,6 +15232,9 @@ if (gameName == 'DeepWoken') then (function()
 			tip = 'Allow you to fly/move while being knocked.'
 		})
 	
+		
+
+
 		localCheats:AddToggle({
 			text = 'Use Weapon',
 			tip = 'Uses your weapon to make knocked ownership work',
